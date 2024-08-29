@@ -1,0 +1,30 @@
+Consulta básica:
+
+Selecciona todos los gatos y muestra su nombre y fecha de nacimiento.
+Filtrado por condiciones:
+
+Encuentra todos los gatos que nacieron después del 1 de enero de 2020.
+Uso de JOIN:
+
+Muestra el nombre de cada gato junto con el nombre de su dueño.
+Uso de JOIN con varias tablas:
+
+Muestra el nombre del gato, el nombre de su raza y el nombre de su dueño.
+Filtrado con JOIN:
+
+Encuentra todos los gatos de la raza "Siamés" y muestra su nombre y el nombre de su dueño.
+Consultas con funciones de agregación:
+
+Cuenta cuántos gatos hay en la base de datos.
+Consultas con GROUP BY:
+
+Muestra el número de gatos por cada dueño.
+Consultas con ORDER BY:
+
+Muestra los nombres de los gatos ordenados por fecha de nacimiento de más reciente a más antigua.
+Consultas con subconsultas:
+
+Encuentra el nombre del dueño que tiene el gato más viejo.
+Consultas con HAVING:
+
+Muestra los dueños que tienen más de un gato.
