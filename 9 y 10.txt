@@ -1,0 +1,14 @@
+SELECT duenos.nombre
+FROM duenos
+JOIN gatos ON duenos.id = gatos.dueno_id
+WHERE gatos.fecha_nacimiento = (
+    SELECT MIN(fecha_nacimiento)
+    FROM gatos
+);
+
+
+SELECT duenos.nombre, COUNT(gatos.id)
+FROM duenos
+JOIN gatos ON duenos.id = gatos.dueno_id
+GROUP BY duenos.id
+HAVING COUNT(gatos.id) > 1;
