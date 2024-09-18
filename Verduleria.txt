@@ -1,0 +1,9 @@
+BD: verduleria 
+tabla: producto
+	id int  nn auto 
+	nombre varchar(45)
+	detalle varchar(45)
+	fecha_de_compra varchar (8)
+	precio_de_compra double
+	precio_de_venta double
+	stock int
