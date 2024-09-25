@@ -1,0 +1,17 @@
+package view;
+import controller.ProductoControlador;
+import model.Producto;
+import model.ProductoDao;
+
+public class Pantalla extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Pantalla
+     */
+    public Pantalla() {
+        initComponents();
+        Producto producto = new Producto();
+        ProductoDao productoDao = new ProductoDao ();
+        ProductoControlador productoControlador = new ProductoControlador(producto, productoDao, panta: this);
+        productoControlador.listarProducto();
+    }
