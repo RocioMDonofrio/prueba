@@ -16,7 +16,7 @@ import model.Producto;
 import model.ProductoDao;
 import view.Pantalla;
 
-public class ProductoControlador {
+
     
 
 
@@ -33,16 +33,16 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
         this.panta = panta;
         
         //Botón de registrar producto
-        this.panta.btnAgregar.addActionListener(this);
+        this.panta.btn_agregar.addActionListener(this);
         //Botón de modificar producto
-        this.panta.btnModificar.addActionListener(this);
+        this.panta.btn_modificar.addActionListener(this);
         //Botón de borrar producto
-        this.panta.btnBorrar.addActionListener(this);
+        this.panta.btn_borrar.addActionListener(this);
         //Botón de limpiar
-        this.panta.btnLimpiar.addActionListener(this);
+        this.panta.btn_limpiar.addActionListener(this);
         
         //Listado de producto
-        this.panta.tbProductoTabla.addMouseListener(this);
+        this.panta.tb_productotabla.addMouseListener(this);
               
         listarProductos(); 
         
@@ -50,19 +50,19 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
 
     
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == panta.btnAgregar){
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == panta.btn_agregar){
             //verifica si el campo está vacío
-            if(panta.txtNombre.getText().equals("")){
+            if(panta.text_nombre.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "El campo nombre es obligatorio");
             }else{
                 //Realiza el agregado
-                producto.setNombre(panta.txtNombre.getText());
-                producto.setDetalle(panta.txtDetalle.getText());
-                producto.setFechaCompra(panta.txtFechaCompra.getText());
-                producto.setPrecioCompra(Double.parseDouble(panta.txtPrecioCompra.getText()));
-                producto.setPrecioVenta(Double.parseDouble(panta.txtPrecioVenta.getText()));
-                producto.setStock(Integer.parseInt(panta.txtStock.getText()));
+                producto.setNombre(panta.text_nombre.getText());
+                producto.setDetalle(panta.text_detalle.getText());
+                producto.setFechaCompra(panta.text_fdcompra.getText());
+                producto.setPrecioCompra(Double.parseDouble(panta.text_pdcompra.getText()));
+                producto.setPrecioVenta(Double.parseDouble(panta.text_pdventa.getText()));
+                producto.setStock(Integer.parseInt(panta.text_stock.getText()));
                 if(productoDao.agregarProducto(producto)){
                     limpiarTabla();
                     limpiarCampos();
@@ -72,19 +72,19 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error al agregar el producto");
                 }
             }
-        }else if(e.getSource() == panta.btnModificar){
+        }else if(e.getSource() == panta.btn_modificar){
             //verifica si el campo está vacío
-            if(panta.txtId.getText().equals("")){
+            if(panta.text_id.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un registro");
             }else{
                 //Realiza la modificación
-                producto.setId(Integer.parseInt(panta.txtId.getText()));
-                producto.setNombre(panta.txtNombre.getText());
-                producto.setDetalle(panta.txtDetalle.getText());
-                producto.setFechaCompra(panta.txtFechaCompra.getText());
-                producto.setPrecioCompra(Double.parseDouble(panta.txtPrecioCompra.getText()));
-                producto.setPrecioVenta(Double.parseDouble(panta.txtPrecioVenta.getText()));
-                producto.setStock(Integer.parseInt(panta.txtStock.getText()));
+                producto.setId(Integer.parseInt(panta.text_id.getText()));
+                producto.setNombre(panta.text_nombre.getText());
+                producto.setDetalle(panta.text_detalle.getText());
+                producto.setFechaCompra(panta.text_fdcompra.getText());
+                producto.setPrecioCompra(Double.parseDouble(panta.text_pdcompra.getText()));
+                producto.setPrecioVenta(Double.parseDouble(panta.text_pdventa.getText()));
+                producto.setStock(Integer.parseInt(panta.text_stock.getText()));
                 if(productoDao.modificarProducto(producto)){
                     limpiarTabla();
                     limpiarCampos();
@@ -94,13 +94,13 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error al modificar el producto");
                 }
             }
-        }else if(e.getSource() == panta.btnBorrar){
+        }else if(e.getSource() == panta.btn_borrar){
             //verifica si el campo está vacío
-            if(panta.txtId.getText().equals("")){
+            if(panta.text_id.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un registro");
             }else{
                 //Realiza el borrado
-                int id = Integer.parseInt(panta.txtId.getText());
+                int id = Integer.parseInt(panta.text_id.getText());
                 if(productoDao.borrarProducto(id)){
                     limpiarTabla();
                     limpiarCampos();
@@ -110,11 +110,11 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error al eliminar el producto");
                 }
             }
-        }else if(e.getSource() == panta.btnLimpiar){
+        }else if(e.getSource() == panta.btn_limpiar){
                 limpiarTabla();
                 limpiarCampos();
                 listarProductos();    
-                panta.btnAgregar.setEnabled(true);
+                panta.btn_agregar.setEnabled(true);
         }    
     }
 
@@ -128,17 +128,17 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if(e.getSource() == panta.tbProductoTabla){
-            int row = panta.tbProductoTabla.rowAtPoint(e.getPoint());
-            panta.txtId.setText(panta.tbProductoTabla.getValueAt(row,0).toString());
-            panta.txtNombre.setText(panta.tbProductoTabla.getValueAt(row,1).toString());
-            panta.txtDetalle.setText(panta.tbProductoTabla.getValueAt(row,2).toString());
-            panta.txtFechaCompra.setText(panta.tbProductoTabla.getValueAt(row,3).toString());
-            panta.txtPrecioCompra.setText(panta.tbProductoTabla.getValueAt(row,4).toString());
-            panta.txtPrecioVenta.setText(panta.tbProductoTabla.getValueAt(row,5).toString());
-            panta.txtStock.setText(panta.tbProductoTabla.getValueAt(row,6).toString());
+        if(e.getSource() == panta.tb_productotabla){
+            int row = panta.tb_productotabla.rowAtPoint(e.getPoint());
+            panta.text_id.setText(panta.tb_productotabla.getValueAt(row,0).toString());
+            panta.text_nombre.setText(panta.tb_productotabla.getValueAt(row,1).toString());
+            panta.text_detalle.setText(panta.tb_productotabla.getValueAt(row,2).toString());
+            panta.text_fdcompra.setText(panta.tb_productotabla.getValueAt(row,3).toString());
+            panta.text_pdcompra.setText(panta.tb_productotabla.getValueAt(row,4).toString());
+            panta.text_pdventa.setText(panta.tb_productotabla.getValueAt(row,5).toString());
+            panta.text_stock.setText(panta.tb_productotabla.getValueAt(row,6).toString());
             //Deshabilitar
-            panta.btnAgregar.setEnabled(false);
+            panta.btn_agregar.setEnabled(false);
         }
     }
 
@@ -165,7 +165,7 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
     //Listar todos los productos
     public void listarProductos(){
         List<Producto> list = productoDao.listarProducto();
-        model = (DefaultTableModel) panta.tbProductoTabla.getModel();
+        model = (DefaultTableModel) panta.tb_productotabla.getModel();
         Object[] row = new Object[7];
         limpiarTabla();
         for(int i = 0; i < list.size(); i++){
@@ -190,15 +190,14 @@ public class ProductoControlador implements ActionListener, MouseListener, KeyLi
     }
     //Limpiar los campos
     public void limpiarCampos(){
-        panta.txtId.setText("");
-        panta.txtNombre.setText("");
-        panta.txtDetalle.setText("");
-        panta.txtFechaCompra.setText("");
-        panta.txtPrecioCompra.setText("");
-        panta.txtPrecioVenta.setText("");
-        panta.txtStock.setText("");
+        panta.text_id.setText("");
+        panta.text_nombre.setText("");
+        panta.text_detalle.setText("");
+        panta.text_fdcompra.setText("");
+        panta.text_pdcompra.setText("");
+        panta.text_pdventa.setText("");
+        panta.text_stock.setText("");
     }
     
 }
 
-}
