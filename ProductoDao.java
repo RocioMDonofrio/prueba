@@ -45,6 +45,13 @@ public class ProductoDao {
             return false;
             }
     //modificar auto
+
+    /**
+     *
+     * @param producto
+     * @return
+     */
+    }
     public boolean modificarProducto(Producto producto){
         String query = "UPDATE producto SET nombre = ?, detalle =?,"+"fecha_de_compra =?,precio_de_compra =?,precio_de_venta =?,stock =?"+"WHERE id =?";
         try {
@@ -108,64 +115,3 @@ public class ProductoDao {
     
 } 
 
-
-
-
-                    
-            
-            
-            
-            }
-        
-        
-        
-        
-        }
-    
-    
-    }
-
-    public Conexion getCn() {
-        return cn;
-    }
-
-    public void setCn(Conexion cn) {
-        this.cn = cn;
-    }
-
-    public Connection getCon() {
-        return con;
-    }
-
-    public void setCon(Connection con) {
-        this.con = con;
-    }
-
-    public PreparedStatement getPst() {
-        return pst;
-    }
-
-    public void setPst(PreparedStatement pst) {
-        this.pst = pst;
-    }
-
-    public ResultSet getRs() {
-        return rs;
-    }
-
-    public void setRs(ResultSet rs) {
-        this.rs = rs;
-    }
-
-   
-
-    @Override
-    public String toString() {
-        return "ProductoDao{" + "cn=" + cn + ", con=" + con + ", pst=" + pst + ", rs=" + rs + '}';
-    }
-    
-
-    
-    
-    
-}
