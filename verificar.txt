@@ -1,0 +1,21 @@
+ public void actionPerformed(ActionEvent e){
+        if(e.getSource() == panta.btn_agregar){
+            //verifica si el campo está vacío
+            if(panta.text_nombre.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "El campo nombre es obligatorio");
+            }else{
+                //Realiza el agregado
+                producto.setNombre(panta.text_nombre.getText());
+                producto.setDetalle(panta.text_detalle.getText());
+                producto.setFechaCompra(panta.text_fdcompra.getText());
+                producto.setPrecioCompra(Double.parseDouble(panta.text_pdcompra.getText()));
+                producto.setPrecioVenta(Double.parseDouble(panta.text_pdventa.getText()));
+                producto.setStock(Integer.parseInt(panta.text_stock.getText()));
+                if(productoDao.agregarProducto(producto)){
+                    limpiarTabla();
+                    limpiarCampos();
+                    listarProductos();
+                    JOptionPane.showMessageDialog(null, "Se agregó el producto");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error al agregar el producto");
+                }
